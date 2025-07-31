@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:minHeight="600dp">
+
+        <!-- Top Profile Card Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <!-- Main Profile Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#30FFFFFF"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="28dp"
+                    android:minHeight="340dp">
+
+                    <!-- Profile Picture with Username -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginBottom="20dp">
+
+                        <!-- Profile Image -->
+                        <FrameLayout
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginBottom="12dp">
+
+                            <ImageView
+                                android:id="@+id/profileImage"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:background="@drawable/large_circle_gradient"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/profileInitials"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:text="CS"
+                                android:textSize="32sp"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/white"
+                                android:gravity="center"
+                                android:background="@drawable/large_circle_gradient" />
+
+                        </FrameLayout>
+
+                        <!-- Username with Verification -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/usernameText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@username"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/white" />
+
+                            <ImageView
+                                android:id="@+id/verificationCheckmark"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_verified_blue"
+                                android:layout_marginStart="2dp"
+                                android:scaleType="fitCenter"
+                                android:visibility="gone"
+                                android:contentDescription="Verified Account" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Prompt Section -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginBottom="20dp">
+
+                        <!-- Prompt Text (View Mode) -->
+                        <TextView
+                            android:id="@+id/promptText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="send me anonymous messages!"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white"
+                            android:gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:minHeight="80dp"
+                            android:lineSpacingExtra="4dp" />
+
+                        <!-- Prompt Edit Layout (Edit Mode) -->
+                        <LinearLayout
+                            android:id="@+id/promptEditLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:layout_marginBottom="16dp">
+
+                            <EditText
+                                android:id="@+id/promptEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minHeight="80dp"
+                                android:background="@drawable/prompt_edit_background"
+                                android:padding="16dp"
+                                android:textSize="20sp"
+                                android:textColor="@android:color/white"
+                                android:textColorHint="#AAFFFFFF"
+                                android:hint="Enter your prompt..."
+                                android:gravity="center"
+                                android:maxLines="3"
+                                android:inputType="textMultiLine|textCapSentences"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <Button
+                                    android:id="@+id/savePromptButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="40dp"
+                                    android:layout_weight="1"
+                                    android:text="✓ Save"
+                                    android:textSize="14sp"
+                                    android:textColor="@android:color/white"
+                                    android:background="@drawable/save_prompt_button"
+                                    android:layout_marginEnd="8dp" />
+
+                                <Button
+                                    android:id="@+id/cancelPromptButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="40dp"
+                                    android:layout_weight="1"
+                                    android:text="✕ Cancel"
+                                    android:textSize="14sp"
+                                    android:textColor="@android:color/white"
+                                    android:background="@drawable/cancel_prompt_button"
+                                    android:layout_marginStart="8dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Progress Bar for Prompt Saving -->
+                        <ProgressBar
+                            android:id="@+id/promptProgressBar"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:visibility="gone"
+                            android:indeterminateTint="@android:color/white" />
+
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/uploadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:text="📷 Upload Photo"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/upload_photo_button"
+                            android:layout_marginEnd="6dp" />
+
+                        <Button
+                            android:id="@+id/editPromptButton"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:text="✏️ Edit Prompt"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/edit_prompt_button"
+                            android:layout_marginStart="6dp" />
+
+                    </LinearLayout>
+
+                    <!-- Upload Progress Bar -->
+                    <ProgressBar
+                        android:id="@+id/uploadProgressBar"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:visibility="gone"
+                        android:indeterminateTint="@android:color/white" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <!-- Bottom Action Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Step 1: Copy Link -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Step 1: Copy your link"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Custom Link Display -->
+                <TextView
+                    android:id="@+id/customLinkText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generating TinyURL..."
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:gravity="center"
+                    android:background="@drawable/link_display_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:maxLines="2"
+                    android:ellipsize="middle" />
+
+                <!-- Copy Link Button -->
+                <Button
+                    android:id="@+id/copyLinkButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="🔗 Copy Link"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/copy_link_button"
+                    android:layout_marginBottom="20dp" />
+
+                <!-- Step 2: Share to Story -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Step 2: Share link on your story"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Share to Story Button -->
+                <Button
+                    android:id="@+id/shareButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="📤 Share to Story!"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/share_story_button" />
+
+                <!-- Tutorial Button (Hidden for now) -->
+                <Button
+                    android:id="@+id/tutorialButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="❓ Tutorial"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView> 

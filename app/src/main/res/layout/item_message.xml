@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="8dp"
+    android:background="@drawable/ios_message_card_background"
+    android:padding="20dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Message Text -->
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your anonymous message here..."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginBottom="12dp"
+        android:maxLines="3"
+        android:ellipsize="end" />
+
+    <!-- Bottom Row: Timestamp + Sender Info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Timestamp -->
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2:30 PM"
+            android:textSize="12sp"
+            android:textColor="#666666" />
+
+        <!-- Sender Info Button (for Pro users) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/senderInfoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sender Info"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/sender_info_button_background"
+            android:drawableStart="@drawable/ic_person_circle"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:elevation="4dp"
+            app:backgroundTint="@null"
+            android:visibility="visible" />
+
+        <!-- Anonymous indicator (for non-Pro users) -->
+        <LinearLayout
+            android:id="@+id/anonymousLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_question_circle"
+                android:layout_marginEnd="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="anonymous"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Respond Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/respondButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📱 Share Response to Story"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/respond_button_background"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="12dp"
+        android:elevation="2dp"
+        app:backgroundTint="@null" />
+
+</LinearLayout> 

@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Storage rules for Zay app
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Profile pictures - allow read and write for everyone
+    match /profile_pictures/{userId} {
+      allow read, write: if true;
+    }
+    
+    // Explore banners - allow read and write for everyone  
+    match /explore_banners/{userId} {
+      allow read, write: if true;
+    }
+    
+    // Support ticket images - allow read and write for everyone (no auth required)
+    // This is needed for guest support ticket submissions
+    match /support_tickets/{allFiles=**} {
+      allow read, write: if true;
+    }
+    
+    // Allow reading any file (for download URLs)
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if false; // Only specific paths above can be written to
+    }
+  }
+} 

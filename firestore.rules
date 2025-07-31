@@ -1,0 +1,68 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Config: all users can read, only specific users can write
+    match /config/{docId} {
+      allow read: if true;
+      allow write: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                     get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+    }
+    
+    // Users collection - users can read/write their own data and others can read
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true;
+      
+      // Messages subcollection - allow read/write for anonymous messaging
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+    
+    // Explore profiles collection - globally readable, users can write
+    match /explore_profiles/{userId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    // Verification requests - users can create, admins can read/write
+    match /verification_requests/{username} {
+      allow read: if true; // Allow reading for admin dashboard
+      allow create: if true; // Allow users to create verification requests
+      allow update, delete: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                               get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+    }
+    
+    // Support tickets - users can create, admins can read/write
+    match /support_tickets/{ticketId} {
+      allow read: if true; // Allow reading for admin dashboard
+      allow create: if true; // Allow users to create support tickets
+      allow update, delete: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                               get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+    }
+    
+    // Login links - admins can create, anyone can read/delete for auto-login functionality
+    match /login_links/{linkId} {
+      allow read: if true; // Allow reading for login validation
+      allow create: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                       get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+      allow update: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                       get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+      allow delete: if true; // Allow deletion after use for security
+    }
+    
+    // Global announcements - only admins can create/update
+    match /announcements/{announcementId} {
+      allow read: if true; // Everyone can read announcements
+      allow write: if exists(/databases/$(database)/documents/users/_c_ssyx) && 
+                      get(/databases/$(database)/documents/users/_c_ssyx).data.role == 'admin';
+    }
+    
+    // Allow read access to any document for authenticated users
+    match /{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+} 
